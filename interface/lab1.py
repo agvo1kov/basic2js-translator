@@ -1,26 +1,10 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import re
 import pprint
 import json
-from IPython.display import display
-from colorama import Fore, Back, Style
 
-
-# In[2]:
-
-
-service_words = ['stop', 'end', 'dim', 'goto', 'gosub', 'if', 'then', 'else', 'end if', 'while', 'end while', 'do', 'sub', 'end sub', 'function', 'end function', 'return']
+service_words = ['stop', 'end', 'dim', 'goto', 'gosub', 'if', 'then', 'else', 'end if', 'while', 'end while', 'do']
 operations = ['+', '-', '*', '/', '^', '<', '>', '=', '<>', '<=', '>=']
 separators = [' ', ',', ':', ';', '(', ')', '[', ']', '\'', '"', "\n"]
-
-
-# In[3]:
-
 
 def filter_program(text):
     stack = []
@@ -78,10 +62,6 @@ def filter_program(text):
 #     formatted_text = formatted_text.replace('\\', '\\\\')
 
     return formatted_text
-
-
-# In[4]:
-
 
 class Analyzer:
     state = 'S'
@@ -288,20 +268,12 @@ class Analyzer:
             'residue': self.string
         }
 
-
-# In[5]:
-
-
 def find_in_begin_of(line):
     global separators, operations, service_words
     for i in range(len(line), -1, -1):
         if line[:i] in separators + operations + service_words + constants + identifiers:
             return [line[:i], line[i:]]
     return False
-
-
-# In[6]:
-
 
 def split_by_token(line):
     found = find_in_begin_of(line)
@@ -313,10 +285,6 @@ def split_by_token(line):
         if find_in_begin_of(line[right_border:]):
             break
     return [line[:right_border], line[right_border:]]
-
-
-# In[7]:
-
 
 def get_next_token():
     global sergements, service_words, operations, separators, constants, identifiers
@@ -380,10 +348,6 @@ def get_next_token():
         segments.pop(0)
         return ['C', len(constants) - 1, line]
 
-
-# In[8]:
-
-
 def get_token_name(token):
     global service_words, operations, separators, constants, identifiers
     codes = ['W', 'O', 'R', 'C', 'I']
@@ -392,11 +356,8 @@ def get_token_name(token):
         return tables[codes.index(token[0])][token[1]]['value']
     return tables[codes.index(token[0])][token[1]]
 
-
-# In[10]:
-
-
-segments = filter_program(open('./src/lab1.bas').read())
+segments = filter_program(open('./prog.bas').read())
+# print(segments)
 constants = []
 identifiers = []
 chain = []
@@ -419,19 +380,18 @@ data = {
     }
 }
 
-with open('./res/lab1.json', 'w') as outfile:
+with open('./lab1.json', 'w') as outfile:
     json.dump(data, outfile)
 print(identifiers)
 
+res = ''
+for item in chain:
+    res += str(item[0]) + str(item[1]) + ' '
+res = res[:-1]
+print('"'+str(res)+'"')
 
-# In[ ]:
+with open('./lab1.txt', 'w') as outfile:
+    outfile.write(res)
 
-
-
-
-
-# In[ ]:
-
-
-
-
+# if __name__ == '__main__':
+#     resultFromFile("C:/Users/111111/Desktop/ТрансляторTA/ex/2.pas")
