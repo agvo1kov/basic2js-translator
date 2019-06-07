@@ -1,0 +1,11 @@
+N=15
+B=30
+C=35
+DIM M(N)
+SUMM = 0
+A=B+C
+I=5
+WHILE I > 5 DO
+M(I) = 1
+SUMM = SUMM + M(I)
+END WHILE

@@ -2,7 +2,7 @@ import re
 import pprint
 import json
 
-service_words = ['stop', 'end', 'dim', 'goto', 'gosub', 'if', 'then', 'else', 'end if', 'while', 'end while', 'do']
+service_words = ['stop', 'end', 'dim', 'goto', 'gosub', 'if', 'then', 'else', 'end if', 'while', 'end while', 'do', 'sub', 'end sub']
 operations = ['+', '-', '*', '/', '^', '<', '>', '=', '<>', '<=', '>=']
 separators = [' ', ',', ':', ';', '(', ')', '[', ']', '\'', '"', "\n"]
 

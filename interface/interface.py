@@ -50,7 +50,7 @@ def openFile():
     # subprocess.run(["python", "lab1.py"]) 
     # subprocess.run(["python", "lab2.py"])
     subprocess.run(["python", "lab3.py"])
-    # subprocess.run(["python", "lab4.py"])
+    subprocess.run(["python", "lab4.py"])
     stepButton['state'] = NORMAL
     fullButton['state'] = NORMAL
     opzBUTTON['state'] = DISABLED
@@ -101,7 +101,7 @@ def checkErrors():
     else:
         new = Tk()
         new.title("Ошибка")
-        Label(new, text=mistake[0], font=fontForText).pack(side=TOP, padx=20, pady=40)
+        Label(new, text=mistake, font=fontForText).pack(side=TOP, padx=20, pady=40)
         syntaxBUTTON['state'] = DISABLED
         opzBUTTON['state'] = DISABLED
         sourseText.tag_add("error", "{}.0".format(mistake[1]), "{}.{}".format(mistake[1], END))

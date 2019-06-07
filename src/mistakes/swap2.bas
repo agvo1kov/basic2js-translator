@@ -11,7 +11,7 @@
 11 ELSE
 12 B% = A%
 13 END IF
-14 WHILE I% > 5 DO
+14 WHILE I% > 5 
 15 M%(I%) = 1
 16 SUMM% = SUMM% + M%(I%)
 17 END WHILE
